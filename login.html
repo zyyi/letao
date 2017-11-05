@@ -32,30 +32,12 @@
             </form>
         </div>
     </div>
-    
-    <script src="/public/assets/jquery/jquery.min.js"></script>
-    <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
 
+    <script src="/public/js/require.js"></script>
+    <script src="/public/js/config.js"></script>
     <script>
-        // 登录功能
-        $("form").on("submit", function () {
-            // 缓存this
-            var _this = $(this);
-            $.ajax({
-                url: "/api/employee/employeeLogin",
-                type: "post",
-                data: _this.serialize(),
-                success: function (info) {
-                    if (info.error) {
-                        // 失败提示信息
-                        return alert(info.message);
-                    }
-                    // 成功跳转到后台首页
-                    location.href = "/";
-                }
-            });
-        })
-
+        
+        require(["src/login"]);
 
     </script>
 
