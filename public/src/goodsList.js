@@ -2,7 +2,7 @@
 
 define(["jquery", "template", "./utils"], function ($, template) {
 	// 每页显示多少个
-	var pageSize = 2;
+	var size = 2;
 
 	// 利用正则匹配页码
 	var reg = /\?[a-z]+=(\d+)/;
@@ -16,12 +16,14 @@ define(["jquery", "template", "./utils"], function ($, template) {
 	$.ajax({
 		url: "/api/product/queryProductDetailList",
 		type: "get",
-		data: {page: page, pageSize: pageSize},
+		data: {page: page, pageSize: size},
 		success: function (info) {
+			console.log(info);
 			// 总的数据
 			var total = info.total;
+			console.log(total);
 			// 总的页数
-			var pageLen = Math.ceil(total/pageSize);
+			var pageLen = Math.ceil(total/size);
 			// console.log(info);
 			// 调用模板引擎，商品数据
 			var html = template("tpl", info);

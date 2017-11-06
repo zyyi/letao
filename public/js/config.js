@@ -5,7 +5,10 @@ require.config({
     paths: {
         jquery: "assets/jquery/jquery.min",
         template: "assets/artTemplate/template-web",
-        uploadify: "assets/uploadify/jquery.uploadify.min"
+        uploadify: "assets/uploadify/jquery.uploadify.min",
+        echarts: "assets/echarts/echarts.min",
+        nprogress: "assets/nprogress/nprogress",
+        ckeditor: "assets/ckeditor/ckeditor"
     },
     // 如果某个第三方的类库不支持 AMD，通过
     // shim 可以实现类似模块的用法
@@ -18,6 +21,28 @@ require.config({
 
     		// 2. 通过deps可以依赖其他模块
     		deps: ["jquery"]
-    	}
+    	},
+        // 因为ckeditor不支持模板，所以可以使用exports将其公开出去
+        ckeditor: {
+            exports: "CKEDITOR"
+        }
     }
 });
+
+
+
+// 全局执行，当页面加载时出现进度条
+require(["nprogress", "jquery"], function (NProgress, $) {
+    NProgress.start();
+
+    NProgress.done();
+
+    // 当发送ajax请求的时候，也需要进度显示
+    $(document).ajaxStart(function () {
+        NProgress.start();
+    }).ajaxStop(function () {
+        NProgress.done();
+    });
+
+});
+

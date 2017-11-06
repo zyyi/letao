@@ -1,6 +1,13 @@
 
-define(["jquery", "uploadify", "./utils"], function ($) {
+define(["jquery", "template", "ckeditor", "uploadify", "./utils"], function ($, template, CKEDITOR) {
+
+	CKEDITOR.replace("proDesc");
+
 	$("form").on("submit", function () {
+		// 因为使用ckeditor后获取不到表单的内容，需要加上下面这段话
+		for (instance in CKEDITOR.instances) {
+            CKEDITOR.instances[instance].updateElement();
+		}
 		// 缓存this
 		var _this = $(this);
 		$.ajax({
@@ -44,4 +51,22 @@ define(["jquery", "uploadify", "./utils"], function ($) {
 			$("input[name='pic']").val(data.picAddr);
 		}
 	});
+
+
+
+	// 品牌种类
+	$.ajax({
+		url: "/api/category/querySecondCategoryPaging",
+		type: "get",
+		data: {page: 1, pageSize: 100},
+		success: function (info) {
+			// console.log(info);
+			// 调用模板引擎
+			var html = template("brands", info);
+			// console.log(html);
+			$(".brand").append(html);
+		}
+	});
+
+
 });

@@ -38,8 +38,8 @@
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">所属品牌</label>
                             <div class="col-xs-5">
-                                <select name="brandId" class="form-control input-sm">
-                                    <option value="1">耐克</option>
+                                <select name="brandId" class="form-control input-sm brand">
+                                    <option value="0">请选择品牌</option>
                                 </select>
                             </div>
                         </div>
@@ -101,6 +101,12 @@
     </div>
 
     <?php include "./common/script.html" ?>
+
+    <script type="text/template" id="brands">
+        {{each rows}}
+        <option value="{{$value.id}}">{{$value.brandName}}</option>
+        {{/each}}
+    </script>
 
     <script>
         require(["src/goodsAdd"]);
