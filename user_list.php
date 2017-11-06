@@ -46,15 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>某某某</td>
-                                <td>否</td>
-                                <td>15901256171</td>
-                                <td>
-                                    <a href="javascript:;" class="btn btn-warning btn-xs">禁 用</a>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -63,5 +55,31 @@
     </div>
 
     <?php include "./common/script.html"; ?>
+
+    <script type="text/template" id="userInfo">
+        {{each rows}}
+        <tr>
+            <td>{{$index+1}}</td>
+            <td>{{$value.username}}</td>
+            <td>{{$value.mobile}}</td>
+            {{if($value.isDelete==1)}}
+            <td>是</td>
+            {{else}}
+            <td>否</td>
+            {{/if}}
+            <td data-id="{{$value.id}}" data-status="{{$value.isDelete}}">
+                {{if ($value.isDelete == 1)}}
+                <a href="javascript:;" class="btn btn-warning btn-xs">启 用</a>
+                {{else}}
+                <a href="javascript:;" class="btn btn-warning btn-xs">禁 用</a>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
+    <script>
+        require(["src/userList"]);
+    </script>
 </body>
 </html>

@@ -25,4 +25,10 @@ define(["jquery"], function ($) {
         });
     });
 
+
+    // 点击分类管理时，显示下面的内容
+    $(".navs a + ul").prev().on("click", function () {
+        $(this).next().slideToggle();
+    })
+
 })
