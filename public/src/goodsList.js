@@ -1,6 +1,6 @@
 
 
-define(["jquery", "template"], function ($, template) {
+define(["jquery", "template", "./utils"], function ($, template) {
 	// 每页显示多少个
 	var pageSize = 2;
 
