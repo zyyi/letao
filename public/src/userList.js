@@ -20,12 +20,14 @@ define(["jquery", "template", "./utils"], function ($, template) {
 		var id = td.attr("data-id");
 		// 获取状态
 		var status = td.attr("data-status");
+		// 0和1之间进行切换
 		status = Math.abs(status - 1);
 		$.ajax({
 			url: "/api/user/updateUser",
 			type: "post",
 			data: {id: id, isDelete: status},
 			success: function (info) {
+				// 判断状态是不是1
 				if (status == 1) {
 					_this.text("启 用");
 					td.prev().text("是");
@@ -33,7 +35,9 @@ define(["jquery", "template", "./utils"], function ($, template) {
 					_this.text("禁 用");
 					td.prev().text("否");
 				}
+				// 重新赋值status的状态的值
 				td.attr("data-status", status);
+				// 切换类
 				_this.toggleClass("btn-info btn-warning");
 			}
 		});
