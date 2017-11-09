@@ -34,87 +34,8 @@
                     <a href="javascript:;">销量 <span class="fa fa-angle-down"></span></a>
                     <a href="javascript:;">折扣 <span class="fa fa-angle-down"></span></a>
                 </div>
-                <div class="mui-clearfix">
-                    <a href="product.html" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
-                    <a href="#" class="cz_product">
-                        <div class="box">
-                            <img src="images/product.jpg" alt=""/>
-                            <p class="name">adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
-                            <p><span class="price">&yen;560.00</span><span class="oldPrice">&yen;888.00</span></p>
-                            <button class="button">立即购买</button>
-                        </div>
-                    </a>
+                <div class="mui-clearfix" id="searchContainer">
+                    <!-- 查询的商品列表 -->
                 </div>
             </div>
         </div>
@@ -127,6 +48,27 @@
     </footer>
 </div>
 <script src="res/mui/js/mui.min.js"></script>
+<script src="/m/js/require.js"></script>
+<script src="/m/js/config.js"></script>
+
+<script type="text/template" id="searchList">
+    {{each data}}
+    <a href="/m/product.html?id={{$value.id}}" class="cz_product">
+        <div class="box">
+            <img src="/api/{{$value.pic[0].picAddr}}" alt=""/>
+            <p class="name">{{$value.proName}}</p>
+            <p><span class="price">&yen;{{$value.price}}</span><span class="oldPrice">&yen;{{$value.oldPrice}}</span></p>
+            <button class="button">立即购买</button>
+        </div>
+    </a>
+    {{/each}}
+</script>
+
+<script>
+    require(["src/searchList"]);
+</script>
+
+<!--
 <script>
     mui(function(){
         mui('.mui-scroll-wrapper').scroll({
@@ -161,5 +103,6 @@
         });
     });
 </script>
+-->
 </body>
 </html>

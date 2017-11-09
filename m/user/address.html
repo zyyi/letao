@@ -20,35 +20,10 @@
         <span class="title">收货地址管理</span>
     </header>
     <div class="cz_container">
-        <ul class="mui-table-view">
-            <li class="mui-table-view-cell">
-                <div class="mui-slider-right mui-disabled">
-                    <a class="mui-btn mui-btn-red">删除</a>
-                </div>
-                <a href="addressManage.html" class="mui-navigate-right mui-slider-handle">
-                    <div class="delivery">邮编：<span>100000</span>&nbsp;收货人：<span>黄晓明</span></div>
-                    <div class="address">北京市海淀区西三旗街道经验龙办公楼传智播客教育科技有限公司</div>
-                </a>
-            </li>
-            <li class="mui-table-view-cell">
-                <div class="mui-slider-right mui-disabled">
-                    <a class="mui-btn mui-btn-red">删除</a>
-                </div>
-                <a href="addressManage.html" class="mui-navigate-right mui-slider-handle">
-                    <div class="delivery">邮编：<span>100000</span>&nbsp;收货人：<span>黄晓明</span></div>
-                    <div class="address">北京市海淀区西三旗街道经验龙办公楼传智播客教育科技有限公司</div>
-                </a>
-            </li>
-            <li class="mui-table-view-cell">
-                <div class="mui-slider-right mui-disabled">
-                    <a class="mui-btn mui-btn-red">删除</a>
-                </div>
-                <a href="addressManage.html" class="mui-navigate-right mui-slider-handle">
-                    <div class="delivery">邮编：<span>100000</span>&nbsp;收货人：<span>黄晓明</span></div>
-                    <div class="address">北京市海淀区西三旗街道经验龙办公楼传智播客教育科技有限公司</div>
-                </a>
-            </li>
+        <ul class="mui-table-view" id="addressList">
+            
         </ul>
+        <a href="./addressManage.html" class="mui-btn mui-btn-primary btn_login">添加地址</a>
     </div>
     <footer class="cz_tabs">
         <a class="tab_home fa fa-home" href="../index.html"><span>首页</span></a>
@@ -58,5 +33,25 @@
     </footer>
 </div>
 <script src="../res/mui/js/mui.min.js"></script>
+<script src="/m/js/require.js"></script>
+<script src="/m/js/config.js"></script>
+
+<script type="text/template" id="address">
+    {{each lists}}
+    <li class="mui-table-view-cell">
+        <div class="mui-slider-right mui-disabled">
+            <a class="mui-btn mui-btn-red">删除</a>
+        </div>
+        <a href="addressManage.html" class="mui-navigate-right mui-slider-handle">
+            <div class="delivery">邮编：<span>{{$value.postCode}}</span>&nbsp;收货人：<span>{{$value.recipients}}</span></div>
+            <div class="address">{{$value.address}}{{$value.addressDetail}}</div>
+        </a>
+    </li>
+    {{/each}}
+</script>
+
+<script>
+    require(["src/user/address"]);
+</script>
 </body>
 </html>

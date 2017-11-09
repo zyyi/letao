@@ -22,12 +22,9 @@
     </header>
     <div class="cz_container">
         <div class="cate_slide">
-            <ul>
-                <li class="now">运动馆</li>
-                <li>女士馆</li>
-                <li>男士馆</li>
-                <li>帆布馆</li>
-                <li>户外馆</li>
+            <!-- 一级分类 -->
+            <ul id="top">
+                <!-- <li class="now">运动馆</li> -->
             </ul>
         </div>
         <div class="cate_content">
@@ -45,17 +42,10 @@
                         <li><a href="#"><img src="images/brand8.png" alt=""/><p>耐克</p></a></li>
                         <li><a href="#"><img src="images/brand1.png" alt=""/><p>耐克</p></a></li>
                     </ul>
-                    <span class="title">运动休闲</span>
-                    <ul class="mui-clearfix">
-                        <li><a href="#"><img src="images/brand1.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand2.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand3.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand4.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand5.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand6.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand7.png" alt=""/><p>耐克</p></a></li>
-                        <li><a href="#"><img src="images/brand8.png" alt=""/><p>耐克</p></a></li>
-                    </ul>
+                    <!-- 二级分类 -->
+                    <div id="child">
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,6 +58,34 @@
     </footer>
 </div>
 <script src="res/mui/js/mui.min.js"></script>
+<script src="/m/js/require.js"></script>
+<script src="/m/js/config.js"></script>
+
+<!-- 一级分类模板 -->
+<script type="text/template" id="topTpl">
+    {{each rows}}
+    <li data-id="{{$value.id}}" data-title="{{$value.categoryName}}">{{$value.categoryName}}</li>
+    {{/each}}
+</script>
+
+<!-- 二级分类模板 -->
+<script type="text/template" id="childTpl">   
+    <span class="title">{{title}}</span>
+    <ul class="mui-clearfix">
+        {{if rows.length == 0}}
+            <p>该商品暂时没有二级分类！</p>
+        {{else}}
+            {{each rows}}
+            <li><a href="#"><img src="/api{{$value.brandLogo}}" alt=""/><p>{{$value.brandName}}</p></a></li>
+            {{/each}}
+        {{/if}}
+    </ul>
+</script>  
+
+<script>
+    require(["src/category"]);
+</script>
+
 <script>
     mui(function(){
         mui('.mui-scroll-wrapper').scroll({
@@ -81,5 +99,6 @@
         });
     });
 </script>
+
 </body>
 </html>

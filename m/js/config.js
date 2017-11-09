@@ -7,7 +7,7 @@ require.config({
 		template: "assets/artTemplate/template-web"
 	},
 	shim: {
-
+		// 包装非模块
 	}
 });
 

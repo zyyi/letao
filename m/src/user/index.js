@@ -1,14 +1,19 @@
 
-define(["jquery"], function ($) {
+define(["jquery", "../utils"], function ($, utils) {
+
 	// 检测登录
-	$.ajax({
-		url: "/api/user/checkUserLogin",
-		type: "get",
-		success: function (info) {
-			// console.log(info);
-			if (info.error) {
-				location.href = "/m/user/login.html?path=" + location.href;
+	utils.checkLogin();
+
+	// 退出登录
+	$(".logout").on("click", function () {
+		$.ajax({
+			url: "/api/user/logout",
+			type: "get",
+			success: function (info) {
+				if (info.success) {
+					location.href = "/m";
+				}
 			}
-		}
-	});
+		});
+	})
 });
