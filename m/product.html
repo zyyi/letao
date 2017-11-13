@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/product.css"/>
+    <style>
+        .selected {
+            background-color: pink;
+        }
+    </style>
 </head>
 <body>
 <div class="cz_layout">
@@ -27,9 +32,9 @@
     </div>
 </div>
 <div class="p_option">
-    <a href="#" class="btn_cart fa fa-shopping-cart"></a>
-    <a href="#" class="btn_addCart">加入购物车</a>
-    <a href="#" class="btn_pay">立即购买</a>
+    <a href="javascript:;" class="btn_cart fa fa-shopping-cart"></a>
+    <a href="javascript:;" class="btn_addCart">加入购物车</a>
+    <a href="javascript:;" class="btn_pay">立即购买</a>
 </div>
 <script src="res/mui/js/mui.min.js"></script>
 <script src="res/mui/js/mui.lazyload.js"></script>
@@ -69,7 +74,7 @@
         </div>
         <div class="p_size">
             尺码：
-            <span class="btn_size">38</span>
+            <span class="btn_size selected">38</span>
             <span class="btn_size">39</span>
             <span class="btn_size">40</span>
             <span class="btn_size">41</span>
@@ -79,8 +84,10 @@
         </div>
         <div class="p_number">
             数量：
-            <span class="jian">-</span><input type="tel"/><span class="jia">+</span>
-            剩余：0 件
+            <span class="jian">-</span>
+            <input type="tel" class="num" value="1"/>
+            <span class="jia">+</span>
+            剩余： <b>{{num}}</b> 件
         </div>
         <div class="p_detail">
             <img data-lazyload="images/detail.jpg"  alt=""/>
